@@ -14,6 +14,11 @@ interface IWeatherState {
   weather: IWeatherStateData;
 }
 
+enum MutationTypes {
+  SET_WEATHER = "SET_WEATHER",
+  SET_FORECAST = "SET_FORECAST",
+}
+
 export default {
   namespaced: true,
   state: {
@@ -45,7 +50,7 @@ export default {
     async setWeather({ commit }: { commit: any }, city: string) {
       try {
         const weather: IWeather = await fetchHelper(generateURLFromCity(city));
-        commit("SET_WEATHER", weather);
+        commit(MutationTypes.SET_WEATHER, weather);
       } catch (err) {
         throw new Error(`WeatherModule API Error: ${err}`);
       }
@@ -59,7 +64,7 @@ export default {
         const forecast: IForecast = await fetchHelper(
           generateForecastURL(coordinates)
         );
-        commit("SET_FORECAST", forecast);
+        commit(MutationTypes.SET_FORECAST, forecast);
       } catch (err) {
         throw new Error(`WeatherModule API Error: ${err}`);
       }

@@ -7,6 +7,10 @@ interface ILocationState {
   location: ILocation | null;
 }
 
+enum MutationTypes {
+  SET_STATE = "SET_STATE",
+}
+
 export default {
   namespaced: true,
   state: {
@@ -36,7 +40,7 @@ export default {
         const location: ILocation = await fetchHelper(
           `http://api.ipstack.com/${ip}?access_key=${GEO_KEY}`
         );
-        commit("SET_STATE", { ip, location } as ILocationState);
+        commit(MutationTypes.SET_STATE, { ip, location });
       } catch (err) {
         throw new Error(`LocationModule API Error: ${err}`);
       }

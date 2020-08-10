@@ -14,16 +14,19 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import fetchHelper from "@/helpers/fetch.helper";
+// Components
+import SummaryComponent from "./components/Summary.component.vue";
+import DateComponent from "./components/Date.component.vue";
+import TemperatureComponent from "./components/Temperature.component.vue";
+import LocationComponent from "./components/Location.component.vue";
+import ForecastComponent from "./components/Forecast.component.vue";
+// Interfaces
 import IWeather from "@/interfaces/weather.interface";
 import ILocation from "@/interfaces/location.interface";
-import { generateURLFromCity } from "@/helpers/endpoint.helper";
-import SummaryComponent from "./components/Summary.component.vue";
-import LocationComponent from "./components/Location.component.vue";
-import TemperatureComponent from "./components/Temperature.component.vue";
-import DateComponent from "./components/Date.component.vue";
-import ForecastComponent from "./components/Forecast.component.vue";
 import IForecast from "@/interfaces/forecast.interface";
+// Helpers
+import fetchHelper from "@/helpers/fetch.helper";
+import { generateURLFromCity } from "@/helpers/endpoint.helper";
 
 @Component({
   components: {
@@ -68,8 +71,6 @@ export default class WeatherComponent extends Vue {
 <style lang="scss" scoped>
 .weather {
   box-shadow: rgba(0, 0, 0, 0.06) 0px 3px 20px 0px;
-  position: absolute;
   background: #4481eb;
-  margin: 0 auto;
 }
 </style>

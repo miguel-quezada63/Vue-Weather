@@ -21,7 +21,7 @@
           alt="Maximum temperature"
         />
       </span>
-      <span class="my-1 flex justify-center items-center">
+      <span class="my-1 mb-2 flex justify-center items-center">
         {{Math.round(dailyForecast.temp.min)}}&deg;
         <img
           class="w-4 transform rotate-90"
@@ -29,8 +29,8 @@
           alt="Minimum temperature"
         />
       </span>
-      <span class="flex items-center mt-2 justify-center">
-        <img class="w-4 mr-1" :src="icons[0]" alt="Chance of precipitation" />
+      <span class="flex items-center mt-auto justify-center">
+        <img class="w-4 mr-1" :src="dropIcon" alt="Chance of precipitation" />
         <span>{{dailyForecast.rain?Math.round(dailyForecast.rain * 10):0}}%</span>
       </span>
     </div>
@@ -39,15 +39,19 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
+// Interfaces
 import IForecast from "@/interfaces/forecast.interface";
+// Helpers
 import { getDayName } from "@/helpers/date.helper";
+import { arrowIcon, dropIcon } from "@/helpers/icon.helper";
 
 @Component({})
 export default class ForecastComponent extends Vue {
   @Prop({ default: null })
   public forecast!: IForecast | null;
-  private arrowIcon = require("@/assets/icons/arrow.svg");
-  private icons = [require("@/assets/icons/014-drop.svg")];
+  private dropIcon = dropIcon;
+  private arrowIcon = arrowIcon;
+
   private getDayAbbrev(time: number) {
     return getDayName(new Date(time * 1000)).substring(0, 3);
   }
