@@ -2,7 +2,7 @@
   <section class="weather w-full h-screen md:h-auto md:w-1/2 xl:w-1/3 relative">
     <LoadingComponent :isLoading="isLoading" />
     <section
-      :class="{init:true, fadein:!isLoading}"
+      :class="{ init: true, fadein: !isLoading }"
       class="h-screen m-auto flex flex-col md:p-3 sm:rounded-md"
     >
       <SummaryComponent :weather="weather.data" />
@@ -31,7 +31,7 @@ import ILocation from "@/interfaces/location.interface";
 import IForecast from "@/interfaces/forecast.interface";
 // Helpers
 import fetchHelper from "@/helpers/fetch.helper";
-import { generateURLFromCity } from "@/helpers/endpoint.helper";
+import { config } from "@vue/test-utils";
 
 @Component({
   components: {
@@ -49,15 +49,13 @@ export default class WeatherComponent extends Vue {
   // Dispatch events to fetch weather, location, and forecast data
   async created() {
     try {
-      await this.$store.dispatch("LocationModule/setLocationAndIP");
-      await this.$store.dispatch(
-        "WeatherModule/setWeather",
-        this.location.city
+      await this.$store.dispatch("LocationModule/setIP");
+      const { weather, forecast, location } = await fetchHelper(
+        `http://localhost:3000/weather/all?ip=${this.ip}`
       );
-      await this.$store.dispatch("WeatherModule/setForecast", {
-        lat: this.location.latitude,
-        lon: this.location.longitude,
-      });
+      this.$store.dispatch("WeatherModule/setWeather", weather);
+      this.$store.dispatch("WeatherModule/setForecast", forecast);
+      this.$store.dispatch("LocationModule/setLocation", location);
       this.isLoading = false;
     } catch (err) {
       console.error(err);
@@ -67,6 +65,10 @@ export default class WeatherComponent extends Vue {
   // Getters for Vuex store
   public get location(): ILocation {
     return this.$store.getters["LocationModule/getLocation"];
+  }
+
+  public get ip(): ILocation {
+    return this.$store.getters["LocationModule/getIP"];
   }
 
   public get weather(): IWeather {

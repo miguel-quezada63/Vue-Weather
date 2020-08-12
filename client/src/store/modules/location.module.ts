@@ -1,6 +1,5 @@
 import fetchHelper from "@/helpers/fetch.helper";
 import ILocation from "@/interfaces/location.interface";
-import GEO_KEY from "@/config/geo.config";
 
 interface ILocationState {
   ip: string;
@@ -8,7 +7,8 @@ interface ILocationState {
 }
 
 enum MutationTypes {
-  SET_STATE = "SET_STATE",
+  SET_IP = "SET_IP",
+  SET_LOCATION = "SET_LOCATION",
 }
 
 export default {
@@ -19,9 +19,12 @@ export default {
   } as ILocationState,
 
   mutations: {
-    SET_STATE(state: ILocationState, { ip, location }: ILocationState) {
-      state.ip = ip;
+    SET_LOCATION(state: ILocationState, location: ILocation) {
       state.location = location;
+    },
+
+    SET_IP(state: ILocationState, ip: string) {
+      state.ip = ip;
     },
   },
 
@@ -29,24 +32,27 @@ export default {
     getLocation(state: ILocationState) {
       return state.location;
     },
+    getIP(state: ILocationState) {
+      return state.ip;
+    },
   },
 
   actions: {
-    async setLocationAndIP({ commit }: { commit: any }) {
+    async setIP({ commit }: { commit: any }) {
       try {
         // Get user's IP address
         const ip: string = (
           await fetchHelper("https://api.ipify.org?format=json")
         ).ip;
-        // Use user's IP address to get their approximate location
-        const location: ILocation = await fetchHelper(
-          `http://api.ipstack.com/${ip}?access_key=${GEO_KEY}`
-        );
         // Commit fetched data to store
-        commit(MutationTypes.SET_STATE, { ip, location });
+        commit(MutationTypes.SET_IP, ip);
       } catch (err) {
         throw new Error(`LocationModule API Error: ${err}`);
       }
+    },
+
+    setLocation({ commit }: { commit: any }, location: ILocation) {
+      commit(MutationTypes.SET_LOCATION, location);
     },
   },
 };

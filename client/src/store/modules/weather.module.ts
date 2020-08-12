@@ -1,8 +1,5 @@
 import IWeather from "@/interfaces/weather.interface";
 import IForecast from "@/interfaces/forecast.interface";
-import fetchHelper from "@/helpers/fetch.helper";
-import { generateURLFromCity } from "@/helpers/endpoint.helper";
-import { generateForecastURL } from "../../helpers/endpoint.helper";
 
 interface IWeatherStateData {
   data: IForecast | IWeather | null;
@@ -47,29 +44,12 @@ export default {
   },
 
   actions: {
-    async setWeather({ commit }: { commit: any }, city: string) {
-      try {
-        const weather: IWeather = await fetchHelper(generateURLFromCity(city));
-        commit(MutationTypes.SET_WEATHER, weather);
-      } catch (err) {
-        throw new Error(`WeatherModule API Error: ${err}`);
-      }
+    setWeather({ commit }: { commit: any }, weather: IWeather) {
+      commit(MutationTypes.SET_WEATHER, weather);
     },
 
-    async setForecast(
-      { commit }: { commit: any },
-      coordinates: { lat: number; lon: number }
-    ) {
-      try {
-        // Fetch forecast data
-        const forecast: IForecast = await fetchHelper(
-          generateForecastURL(coordinates)
-        );
-        // Commit forecast data to store
-        commit(MutationTypes.SET_FORECAST, forecast);
-      } catch (err) {
-        throw new Error(`WeatherModule API Error: ${err}`);
-      }
+    setForecast({ commit }: { commit: any }, forecast: IForecast) {
+      commit(MutationTypes.SET_FORECAST, forecast);
     },
   },
 };

@@ -1,6 +1,6 @@
 <template>
   <section class="date flex flex-col justify-center items-center text-gray-200 font-light">
-    <span>{{date}}; {{time}}</span>
+    <span>{{ date }}; {{ time }}</span>
   </section>
 </template>
 
@@ -23,7 +23,7 @@ export default class DateComponent extends Vue {
     // Get initial date and time
     this.date = getFormattedDate();
     this.time = getFormattedTime();
-    this.interval = setInterval(() => {
+    this.interval = window.setInterval(() => {
       // Refresh time each second
       this.time = getFormattedTime();
       // If time is 12AM, refresh date property so that the date changes
