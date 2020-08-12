@@ -1,25 +1,27 @@
 <template>
-  <div id="app" class="flex h-screen justify-center items-center">
-    <Weather />
+  <div id="app" class="flex h-screen justify-center items-center relative">
+    <WeatherComponent />
     <div class="bg absolute"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import Weather from "./components/Weather/Weather.component.vue";
+import WeatherComponent from "@/components/Weather.component.vue";
+import LoadingComponent from "@/components/Loading.component.vue";
+import ILocation from "./interfaces/location.interface";
 
 @Component({
-  components: { Weather },
+  components: { WeatherComponent, LoadingComponent },
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+@import "./scss/_variables.scss";
 
 #app {
-  font-family: "Roboto", sans-serif;
+  font-family: $primary-font;
 }
 
 .bg {

@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="forecast"
-    class="forecast flex text-gray-200 justify-center text-center mt-auto md:mt-8 mb-10"
+    class="forecast flex text-gray-200 justify-center text-center mt-auto mb-10"
   >
     <div
       class="flex flex-col px-5"
@@ -49,9 +49,11 @@ import { arrowIcon, dropIcon } from "@/helpers/icon.helper";
 export default class ForecastComponent extends Vue {
   @Prop({ default: null })
   public forecast!: IForecast | null;
+
   private dropIcon = dropIcon;
   private arrowIcon = arrowIcon;
 
+  // Get day abbreviation for the respective date
   private getDayAbbrev(time: number) {
     return getDayName(new Date(time * 1000)).substring(0, 3);
   }

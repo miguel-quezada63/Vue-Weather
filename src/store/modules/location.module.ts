@@ -34,12 +34,15 @@ export default {
   actions: {
     async setLocationAndIP({ commit }: { commit: any }) {
       try {
+        // Get user's IP address
         const ip: string = (
           await fetchHelper("https://api.ipify.org?format=json")
         ).ip;
+        // Use user's IP address to get their approximate location
         const location: ILocation = await fetchHelper(
           `http://api.ipstack.com/${ip}?access_key=${GEO_KEY}`
         );
+        // Commit fetched data to store
         commit(MutationTypes.SET_STATE, { ip, location });
       } catch (err) {
         throw new Error(`LocationModule API Error: ${err}`);

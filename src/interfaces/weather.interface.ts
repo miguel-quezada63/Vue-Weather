@@ -1,73 +1,73 @@
 export default interface IWeather {
-  base: string;
-  clouds: IWeatherClouds;
-  coord: IWeatherCoordinate;
-  dt: number;
-  id: number;
-  main: IWeatherMain;
-  rain?: IWeatherRain;
-  sys: IWeatherSys;
-  weather: IWeatherConditions[];
-  wind: IWeatherWind;
+  readonly base: string;
+  readonly clouds: IWeatherClouds;
+  readonly coord: IWeatherCoordinate;
+  readonly dt: number;
+  readonly id: number;
+  readonly main: IWeatherMain;
+  readonly rain?: IWeatherRain;
+  readonly sys: IWeatherSys;
+  readonly weather: IWeatherConditions[];
+  readonly wind: IWeatherWind;
 }
-// City exact coordinates
+// City coordinates
 interface IWeatherCoordinate {
-  lon: number;
-  lat: number;
+  readonly lon: number;
+  readonly lat: number;
 }
 
 interface IWeatherClouds {
   // Cloudiness percentage
-  all: number;
+  readonly all: number;
 }
 
 interface IWeatherMain {
   // Exact temperature
-  temp: number;
+  readonly temp: number;
   // Minimum temperature
-  temp_min: number;
+  readonly temp_min: number;
   // Maximum temperature
-  temp_max: number;
+  readonly temp_max: number;
   // Human perception of weather, based on humidity and temperature
-  feels_like: number;
+  readonly feels_like: number;
   // Atmospheric pressure
-  pressure: number;
+  readonly pressure: number;
   // Humidity percentage
-  humidity: number;
+  readonly humidity: number;
 }
 
 interface IWeatherSys {
-  country: string;
-  id: number;
-  sunrise: Date;
-  sunset: Date;
-  type: number;
+  readonly country: string;
+  readonly id: number;
+  readonly sunrise: Date;
+  readonly sunset: Date;
+  readonly type: number;
 }
 
 interface IWeatherRain {
   // Rain volume for last hour, in mm
-  "1h": number;
+  readonly "1h": number;
   // Rain volume for last 3 hours, in mm
-  "3h": number;
+  readonly "3h": number;
 }
 
 interface IWeatherSnow {
   // Snow volume for last hour, in mm
-  "1h": number;
+  readonly "1h": number;
   // Rain volume for last 3 hours, in mm
-  "3h": number;
+  readonly "3h": number;
 }
 
 interface IWeatherConditions {
-  description: string;
-  icon: string;
-  id: number;
-  main: string;
+  readonly description: string;
+  readonly icon: string;
+  readonly id: number;
+  readonly main: string;
 }
 
 interface IWeatherWind {
   // Wind direction, in degrees
-  deg: number;
-  gust: number;
-  speed: number;
+  readonly deg: number;
+  readonly gust: number;
+  readonly speed: number;
 }

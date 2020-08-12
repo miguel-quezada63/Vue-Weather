@@ -23,6 +23,11 @@ const DAYS = [
   "Saturday",
 ];
 
+function getMonthName(date: Date) {
+  const monthNum = date.getMonth();
+  return MONTHS[monthNum];
+}
+
 export function getFormattedDate() {
   const date = new Date();
   const year = date.getFullYear();
@@ -42,11 +47,6 @@ export function getFormattedTime() {
     seconds < 10 ? `0${seconds}` : seconds
   } 
   ${hours < 12 ? `AM` : `PM`}`;
-}
-
-function getMonthName(date: Date) {
-  const monthNum = date.getMonth();
-  return MONTHS[monthNum];
 }
 
 export function getDayName(date: Date) {

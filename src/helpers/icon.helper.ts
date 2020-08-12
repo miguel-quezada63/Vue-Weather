@@ -3,3 +3,4 @@ export const dropIcon = require("@/assets/icons/drops.svg");
 export const pinIcon = require("@/assets/icons/pin.svg");
 export const windIcon = require("@/assets/icons/wind.svg");
 export const cloudIcon = require("@/assets/icons/03d.svg");
+export const sunAnimIcon = require("@/assets/icons/sun-anim.gif");

@@ -61,9 +61,11 @@ export default {
       coordinates: { lat: number; lon: number }
     ) {
       try {
+        // Fetch forecast data
         const forecast: IForecast = await fetchHelper(
           generateForecastURL(coordinates)
         );
+        // Commit forecast data to store
         commit(MutationTypes.SET_FORECAST, forecast);
       } catch (err) {
         throw new Error(`WeatherModule API Error: ${err}`);

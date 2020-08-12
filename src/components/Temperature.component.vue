@@ -42,6 +42,7 @@ export default class TemperatureComponent extends Vue {
   @Prop({ default: null })
   public weather!: IWeather | null;
   private arrowIcon = arrowIcon;
+  // Data for cloudiness percentages
   private CLOUDINESS = {
     CLEAR: 0,
     MOSTLY_CLEAR: 30,
