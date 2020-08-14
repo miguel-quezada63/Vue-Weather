@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 // Interfaces
-import ILocation from "@/interfaces/location.interface";
+import ILocation from "../../../shared/interfaces/location.interface";
 // Helpers
 import { getFormattedDate, getFormattedTime } from "@/helpers/date.helper";
 

@@ -1,12 +1,11 @@
 import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import { LocationService } from '../location/location.service';
 import KEY from './config/weather.config';
-
 import fetchHelper from '../helpers/fetch.helper';
-import IWeather from './interfaces/weather.interfaces';
-import IForecast from './interfaces/forecast.interface';
-import ILocation from '../location/interfaces/location.interface';
-import Coordinate from './interfaces/coordinate.interface';
+import ILocation from '../../../shared/interfaces/location.interface';
+import Coordinate from '../../../shared/interfaces/coordinate.interface';
+import IWeather from '../../../shared/interfaces/weather.interface';
+import IForecast from '../../../shared/interfaces/forecast.interface';
 
 @Injectable()
 export class WeatherService {
@@ -32,7 +31,7 @@ export class WeatherService {
     }
   }
 
-  public async getWeatherByCoord({ lat, lon }: Coordinate) {
+  private async getWeatherByCoord({ lat, lon }: Coordinate) {
     try {
       const weather: IWeather = await fetchHelper(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${KEY}`,
@@ -44,7 +43,7 @@ export class WeatherService {
     }
   }
 
-  public async getWeatherByCity(city: string) {
+  private async getWeatherByCity(city: string) {
     try {
       const weather: IWeather = await fetchHelper(
         `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&appid=${KEY}`,
@@ -56,7 +55,7 @@ export class WeatherService {
     }
   }
 
-  public async getForecast({ lat, lon }: Coordinate) {
+  private async getForecast({ lat, lon }: Coordinate) {
     try {
       const forecast: IForecast = await fetchHelper(
         `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&units=imperial&exclude=current,minutely,hourly&appid=${KEY}`,

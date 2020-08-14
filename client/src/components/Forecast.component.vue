@@ -40,7 +40,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 // Interfaces
-import IForecast from "@/interfaces/forecast.interface";
+import IForecast from "../../../shared/interfaces/forecast.interface";
 // Helpers
 import { getDayName } from "@/helpers/date.helper";
 import { arrowIcon, dropIcon } from "@/helpers/icon.helper";

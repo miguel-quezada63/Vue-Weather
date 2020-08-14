@@ -35,7 +35,7 @@
 
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
-import IWeather from "@/interfaces/weather.interface";
+import IWeather from "../../../shared/interfaces/weather.interface";
 import { arrowIcon } from "@/helpers/icon.helper";
 @Component({})
 export default class TemperatureComponent extends Vue {

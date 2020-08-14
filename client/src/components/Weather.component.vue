@@ -26,12 +26,11 @@ import TemperatureComponent from "./Temperature.component.vue";
 import LocationComponent from "./Location.component.vue";
 import ForecastComponent from "./Forecast.component.vue";
 // Interfaces
-import IWeather from "@/interfaces/weather.interface";
-import ILocation from "@/interfaces/location.interface";
-import IForecast from "@/interfaces/forecast.interface";
+import ILocation from "../../../shared/interfaces/location.interface";
+import IWeather from "../../../shared/interfaces/weather.interface";
+import IForecast from "../../../shared/interfaces/forecast.interface";
 // Helpers
 import fetchHelper from "@/helpers/fetch.helper";
-import { config } from "@vue/test-utils";
 
 @Component({
   components: {

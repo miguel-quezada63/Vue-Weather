@@ -1,7 +1,7 @@
 import { Injectable, ServiceUnavailableException } from '@nestjs/common';
 import KEY from './config/location.config';
-import ILocation from './interfaces/location.interface';
 import fetchHelper from './../helpers/fetch.helper';
+import ILocation from '../../../shared/interfaces/location.interface';
 
 @Injectable()
 export class LocationService {

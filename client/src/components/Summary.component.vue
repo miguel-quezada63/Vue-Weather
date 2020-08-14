@@ -18,7 +18,7 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 // Interfaces
-import IWeather from "@/interfaces/weather.interface";
+import IWeather from "../../../shared/interfaces/weather.interface";
 // Helpers
 import { dropIcon, windIcon, cloudIcon } from "@/helpers/icon.helper";
 

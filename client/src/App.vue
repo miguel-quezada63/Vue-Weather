@@ -9,7 +9,6 @@
 import { Component, Vue } from "vue-property-decorator";
 import WeatherComponent from "@/components/Weather.component.vue";
 import LoadingComponent from "@/components/Loading.component.vue";
-import ILocation from "./interfaces/location.interface";
 
 @Component({
   components: { WeatherComponent, LoadingComponent },

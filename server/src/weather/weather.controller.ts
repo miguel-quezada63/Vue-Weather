@@ -1,5 +1,4 @@
 import { Controller, Get, Query } from '@nestjs/common';
-import Coordinate from './interfaces/coordinate.interface';
 import { WeatherService } from './weather.service';
 
 @Controller('weather')
