@@ -1,3 +1,3 @@
-## Vue Weather Application
+## Weather Application
 
-A simple weather application created on my spare-time using Vue.js.
+A simple weather application.
